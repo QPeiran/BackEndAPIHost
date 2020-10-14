@@ -29,7 +29,9 @@ namespace BackEndAPIHost
         {
             services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
             services.AddControllers();
-            services.AddScoped<ICommanderRepo, MockApiCalls>();
+            /*Comment out this mock data implementation*/
+            //services.AddScoped<ICommanderRepo, MockApiCalls>();
+            services.AddScoped<ICommanderRepo, SQLCommanderRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

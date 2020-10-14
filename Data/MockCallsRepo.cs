@@ -5,7 +5,7 @@ namespace BackEndAPIHost.Data
 {
     public class MockApiCalls : ICommanderRepo
     {
-        public IEnumerable<Command> GetAppCommands()
+        public IEnumerable<Command> GetAllCommands()
         {
             var commands = new List<Command>
             {
