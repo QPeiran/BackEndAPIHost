@@ -9,7 +9,12 @@ namespace BackEndAPIHost.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        private readonly MockApiCalls _repository = new MockApiCalls();
+        private readonly ICommanderRepo _repository;
+        public CommandsController(ICommanderRepo repository) // dependency injection
+        {
+            _repository = repository;
+        }
+        //private readonly MockApiCalls _repository = new MockApiCalls();
         //GET api/commands
         [HttpGet]
         public ActionResult<IEnumerable<Command>> GetAllCommands()
