@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
+//Internal (Domain Models)
 namespace BackEndAPIHost.Models
 {
     public class Command

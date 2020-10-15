@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using BackEndAPIHost.Models;
 using Microsoft.AspNetCore.Mvc;
 using BackEndAPIHost.Data;
+using AutoMapper;
+using BackEndAPIHost.DTOs;
 
 namespace BackEndAPIHost.Controllers
 {
@@ -10,9 +12,11 @@ namespace BackEndAPIHost.Controllers
     public class CommandsController : ControllerBase
     {
         private readonly ICommanderRepo _repository;
-        public CommandsController(ICommanderRepo repository) // dependency injection
+        private readonly IMapper _mapper;
+        public CommandsController(ICommanderRepo repository, IMapper mapper) // dependency injection
         {
             _repository = repository;
+            _mapper = mapper;
         }
         //private readonly MockApiCalls _repository = new MockApiCalls();
         //GET api/commands
@@ -25,10 +29,14 @@ namespace BackEndAPIHost.Controllers
         }
         //GET api/commands/{id}
         [HttpGet("{id}")]
-        public ActionResult<Command> GetCommandById(int id)
+        public ActionResult<CommandReadDTO> GetCommandById(int id)
         {
             var commandsItem = _repository.GetCommandById(id);
-            return Ok(commandsItem);
+            if (commandsItem != null)
+            {
+                return Ok(_mapper.Map<CommandReadDTO>(commandsItem));
+            }
+            return NotFound();
         }
     }
 }

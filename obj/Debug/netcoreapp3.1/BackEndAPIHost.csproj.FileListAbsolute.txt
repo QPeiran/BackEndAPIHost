@@ -59,3 +59,5 @@ C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\runt
 C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\obj\Debug\netcoreapp3.1\BackEndAPIHost.csproj.CopyComplete
+C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
