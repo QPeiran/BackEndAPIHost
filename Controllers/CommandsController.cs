@@ -28,7 +28,7 @@ namespace BackEndAPIHost.Controllers
             return Ok(_mapper.Map<IEnumerable<CommandReadDTO>>(commandsItems));
         }
         //GET api/commands/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCommandById")]
         public ActionResult<CommandReadDTO> GetCommandById(int id)
         {
             var commandsItem = _repository.GetCommandById(id);
@@ -45,9 +45,12 @@ namespace BackEndAPIHost.Controllers
             _repository.CreateCommand(newDTO);
             if(_repository.SaveChanges())
             {
-                return Ok();
+                // return Ok();
+                var returnObj = _mapper.Map<CommandReadDTO>(newDTO);
+                //return Ok(returnObj);
+                return CreatedAtRoute(nameof(GetCommandById), new {Id = returnObj.Id}, returnObj);
             }
-            return NotFound();
+            return BadRequest();
         }
     }
 }
