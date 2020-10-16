@@ -5,6 +5,11 @@ namespace BackEndAPIHost.Data
 {
     public class MockApiCalls : ICommanderRepo
     {
+        public void CreateCommand(Command cmd)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             var commands = new List<Command>
@@ -19,6 +24,11 @@ namespace BackEndAPIHost.Data
         public Command GetCommandById(int id)
         {
             return new Command{Id=0, HowTo="build an API hoster", Line="GET request", Platform = "webapp"};
+        }
+
+        public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

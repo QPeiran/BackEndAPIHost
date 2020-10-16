@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BackEndAPIHost.Models;
+using System;
 
 namespace BackEndAPIHost.Data
 {
@@ -12,6 +13,15 @@ namespace BackEndAPIHost.Data
             _db = db;
         }
 
+        public void CreateCommand(Command cmd)
+        {
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _db.Commands.Add(cmd);
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             return _db.Commands.ToList();
@@ -20,6 +30,11 @@ namespace BackEndAPIHost.Data
         public Command GetCommandById(int id)
         {
             return _db.Commands.FirstOrDefault(dummy => dummy.Id == id);
+        }
+
+        public bool SaveChanges()
+        {
+            return (_db.SaveChanges() >= 0);
         }
     }
 }

@@ -21,11 +21,11 @@ namespace BackEndAPIHost.Controllers
         //private readonly MockApiCalls _repository = new MockApiCalls();
         //GET api/commands
         [HttpGet]
-        public ActionResult<IEnumerable<Command>> GetAllCommands()
+        public ActionResult<IEnumerable<CommandReadDTO>> GetAllCommands()
         {
             var commandsItems = _repository.GetAllCommands();
 
-            return Ok(commandsItems);
+            return Ok(_mapper.Map<IEnumerable<CommandReadDTO>>(commandsItems));
         }
         //GET api/commands/{id}
         [HttpGet("{id}")]
@@ -36,6 +36,13 @@ namespace BackEndAPIHost.Controllers
             {
                 return Ok(_mapper.Map<CommandReadDTO>(commandsItem));
             }
+            return NotFound();
+        }
+        [HttpPost]
+        public ActionResult<Command> CreateCommand(Command ncmd)
+        {
+            // _repository.CreateCommand(ncmd);
+            // _repository.SaveChanges();
             return NotFound();
         }
     }
