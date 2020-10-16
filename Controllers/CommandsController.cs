@@ -39,10 +39,14 @@ namespace BackEndAPIHost.Controllers
             return NotFound();
         }
         [HttpPost]
-        public ActionResult<Command> CreateCommand(Command ncmd)
+        public ActionResult<CommandCreateDTO> CreateCommand(CommandCreateDTO newcmd)
         {
-            _repository.CreateCommand(ncmd);
-            _repository.SaveChanges();
+            var newDTO = _mapper.Map<Command>(newcmd);
+            _repository.CreateCommand(newDTO);
+            if(_repository.SaveChanges())
+            {
+                return Ok();
+            }
             return NotFound();
         }
     }

@@ -8,8 +8,9 @@ namespace BackEndAPIHost.Profiles
     {
         public CommandsProfile()
         {
+            //Source -> Destination
             CreateMap<Command, CommandReadDTO>();
-            //CreateMap<Command, CommandCreateDTO>();
+            CreateMap<CommandCreateDTO, Command>();
         }
     }
 }
