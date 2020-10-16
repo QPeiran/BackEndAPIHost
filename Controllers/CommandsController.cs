@@ -41,8 +41,8 @@ namespace BackEndAPIHost.Controllers
         [HttpPost]
         public ActionResult<Command> CreateCommand(Command ncmd)
         {
-            // _repository.CreateCommand(ncmd);
-            // _repository.SaveChanges();
+            _repository.CreateCommand(ncmd);
+            _repository.SaveChanges();
             return NotFound();
         }
     }
