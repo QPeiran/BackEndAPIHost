@@ -4,6 +4,8 @@ namespace BackEndAPIHost.DTOs
 {
     public class CommandUpdateDTO
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         [MaxLength(250)] //add such annotation attributes will return api call a 400 error if client did not provide a proper input; returning 500 if without annotations 
         public string HowTo { get; set; }

@@ -39,14 +39,14 @@ namespace BackEndAPIHost.Data
 
         public void UpdateCommand(Command cmd)
         {
-            if (cmd != null)
+            if (cmd == null)
             {
-                var target = _db.Commands.FirstOrDefault(dummy => dummy.Id == cmd.Id);
-                target.HowTo = cmd.HowTo;
-                target.Line = cmd.Line;
-                target.Platform = cmd.Platform;
+                throw new ArgumentNullException(nameof(cmd));
             }
-            throw new ArgumentNullException(nameof(cmd));
+            var target = _db.Commands.FirstOrDefault(dummy => dummy.Id == cmd.Id);
+            target.HowTo = cmd.HowTo;
+            target.Line = cmd.Line;
+            target.Platform = cmd.Platform;
         }
     }
 }
