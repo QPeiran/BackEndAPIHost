@@ -11,6 +11,7 @@ namespace BackEndAPIHost.Profiles
             //Source -> Destination
             CreateMap<Command, CommandReadDTO>();
             CreateMap<CommandCreateDTO, Command>();
+            CreateMap<CommandUpdateDTO, Command>();
         }
     }
 }

@@ -36,5 +36,17 @@ namespace BackEndAPIHost.Data
         {
             return (_db.SaveChanges() >= 0);
         }
+
+        public void UpdateCommand(Command cmd)
+        {
+            if (cmd != null)
+            {
+                var target = _db.Commands.FirstOrDefault(dummy => dummy.Id == cmd.Id);
+                target.HowTo = cmd.HowTo;
+                target.Line = cmd.Line;
+                target.Platform = cmd.Platform;
+            }
+            throw new ArgumentNullException(nameof(cmd));
+        }
     }
 }

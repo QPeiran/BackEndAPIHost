@@ -60,6 +60,18 @@ namespace BackEndAPIHost.Controllers
         4.create & return a PUT ActionResult
         */
         [HttpPut]
-        public ActionResult
+        public ActionResult<CommandUpdateDTO> PutMethod(CommandUpdateDTO newcmd)
+        {
+            var newDTO = _mapper.Map<Command>(newcmd);
+            _repository.UpdateCommand(newDTO);
+            if(_repository.SaveChanges())
+            {
+                // return Ok();
+                var returnObj = _mapper.Map<CommandReadDTO>(newDTO);
+                //return Ok(returnObj);
+                return CreatedAtRoute(nameof(GetCommandById), new {Id = returnObj.Id}, returnObj);
+            }
+            return BadRequest();           
+        }
     }
 }
