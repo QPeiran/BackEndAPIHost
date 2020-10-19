@@ -61,3 +61,6 @@ C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\runt
 C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\obj\Debug\netcoreapp3.1\BackEndAPIHost.csproj.CopyComplete
 C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Peiran Quan\dotNetApiHoster\BackEndAPIHost\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

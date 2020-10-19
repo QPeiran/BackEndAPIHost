@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using BackEndAPIHost.Data;
 using AutoMapper;
 using BackEndAPIHost.DTOs;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace BackEndAPIHost.Controllers
 {
@@ -78,7 +79,32 @@ namespace BackEndAPIHost.Controllers
                 }
                 throw new System.ArgumentException("Save Failed", "original"); 
             }
+            /*Option 2:
+            _mapper.Map(newcmd, commandsItem);
+            _repository.UpdateCommand(commandsItem);
+            _repository.SaveChanges();
+            */
             return NotFound();           
+        }
+        // PATCH api/commands/{id}
+        [HttpPatch("{id}")]
+        public ActionResult<JsonPatchDocument<CommandUpdateDTO>> PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDTO> patchDoc)
+        {
+            var commandModelFromRepo = _repository.GetCommandById(id);
+            if (commandModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            var commandToPatch = _mapper.Map<CommandUpdateDTO>(commandModelFromRepo); // .Map<target>(source)
+            patchDoc.ApplyTo(commandToPatch, ModelState);
+            if (!TryValidateModel(commandToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+            _mapper.Map(commandToPatch, commandModelFromRepo);
+            _repository.UpdateCommand(commandModelFromRepo);
+            _repository.SaveChanges();
+            return NoContent();
         }
     }
 }

@@ -48,5 +48,8 @@ namespace BackEndAPIHost.Data
             target.Line = cmd.Line;
             target.Platform = cmd.Platform;
         }
+        public void UpdateCommand(Command cmd)
+        {
+        }
     }
 }
