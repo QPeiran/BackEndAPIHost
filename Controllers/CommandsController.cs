@@ -34,7 +34,8 @@ namespace BackEndAPIHost.Controllers
             var commandsItem = _repository.GetCommandById(id);
             if (commandsItem != null)
             {
-                return Ok(_mapper.Map<CommandReadDTO>(commandsItem));
+                var myObj = _mapper.Map<CommandReadDTO>(commandsItem);
+                return Ok(myObj);
             }
             return NotFound();
         }
@@ -59,15 +60,16 @@ namespace BackEndAPIHost.Controllers
         3.create CommandUpdateDTO
         4.create & return a PUT ActionResult
         */
-        [HttpPut]
-        public ActionResult<CommandUpdateDTO> PutMethod(CommandUpdateDTO newcmd)
+        [HttpPut("{id}")]
+        public ActionResult<CommandUpdateDTO> PutMethodById(int id, CommandUpdateDTO newcmd)
         {
             var newDTO = _mapper.Map<Command>(newcmd);
-            _repository.UpdateCommand(newDTO);
+            _repository.UpdateCommand(id, newDTO);
             if(_repository.SaveChanges())
             {
                 // return Ok();
                 var returnObj = _mapper.Map<CommandReadDTO>(newDTO);
+                returnObj.Id = id;
                 //return Ok(returnObj);
                 return CreatedAtRoute(nameof(GetCommandById), new {Id = returnObj.Id}, returnObj);
             }

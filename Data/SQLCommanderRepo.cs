@@ -37,13 +37,13 @@ namespace BackEndAPIHost.Data
             return (_db.SaveChanges() >= 0);
         }
 
-        public void UpdateCommand(Command cmd)
+        public void UpdateCommand(int id, Command cmd)
         {
             if (cmd == null)
             {
                 throw new ArgumentNullException(nameof(cmd));
             }
-            var target = _db.Commands.FirstOrDefault(dummy => dummy.Id == cmd.Id);
+            var target = _db.Commands.FirstOrDefault(dummy => dummy.Id == id);
             target.HowTo = cmd.HowTo;
             target.Line = cmd.Line;
             target.Platform = cmd.Platform;
