@@ -63,17 +63,22 @@ namespace BackEndAPIHost.Controllers
         [HttpPut("{id}")]
         public ActionResult<CommandUpdateDTO> PutMethodById(int id, CommandUpdateDTO newcmd)
         {
-            var newDTO = _mapper.Map<Command>(newcmd);
-            _repository.UpdateCommand(id, newDTO);
-            if(_repository.SaveChanges())
+            var commandsItem = _repository.GetCommandById(id);
+            if (commandsItem != null)
             {
-                // return Ok();
-                var returnObj = _mapper.Map<CommandReadDTO>(newDTO);
-                returnObj.Id = id;
-                //return Ok(returnObj);
-                return CreatedAtRoute(nameof(GetCommandById), new {Id = returnObj.Id}, returnObj);
+                var newDTO = _mapper.Map<Command>(newcmd);
+                _repository.UpdateCommand(id, newDTO);
+                if(_repository.SaveChanges())
+                {
+                    // return Ok();
+                    var returnObj = _mapper.Map<CommandReadDTO>(newDTO);
+                    returnObj.Id = id;
+                    //return Ok(returnObj);
+                    return CreatedAtRoute(nameof(GetCommandById), new {Id = returnObj.Id}, returnObj);
+                }
+                throw new System.ArgumentException("Save Failed", "original"); 
             }
-            return BadRequest();           
+            return NotFound();           
         }
     }
 }
