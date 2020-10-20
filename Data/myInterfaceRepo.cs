@@ -11,5 +11,6 @@ namespace BackEndAPIHost.Data
         void CreateCommand(Command cmd);
         void UpdateCommand(int id, Command cmd);
         void UpdateCommand(Command cmd);
+        void DeleteCommand(int id);
     }
 }

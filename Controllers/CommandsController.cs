@@ -106,5 +106,18 @@ namespace BackEndAPIHost.Controllers
             _repository.SaveChanges();
             return NoContent();
         }
+        //TODO: DELET call
+
+        //DELETE api/command/{id}
+        [HttpDelete("{id}")]
+        public ActionResult<string> DeleteCommand(int id)
+        {
+            _repository.DeleteCommand(id);
+            if (_repository.SaveChanges())
+            {
+                return "Delete Success!";
+            }
+            return new NotFoundResult();
+        }
     }
 }
