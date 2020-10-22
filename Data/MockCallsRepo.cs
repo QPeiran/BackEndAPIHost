@@ -33,17 +33,17 @@ namespace BackEndAPIHost.Data
 
         public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public void UpdateCommand(int id, Command cmd)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void UpdateCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }

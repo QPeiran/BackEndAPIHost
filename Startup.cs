@@ -34,8 +34,8 @@ namespace BackEndAPIHost
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
             /*Comment out this mock data implementation*/
-            //services.AddScoped<ICommanderRepo, MockApiCalls>();
-            services.AddScoped<ICommanderRepo, SQLCommanderRepo>();
+            services.AddScoped<ICommanderRepo, MockApiCalls>();
+            //services.AddScoped<ICommanderRepo, SQLCommanderRepo>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
